@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv=" "X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <style>
+        .navbar{
+           display: flex;
+           justify-content: space-between;
+           background-color: black;
+           align-items: center;
+           border-radius: 25px;
+        
+        }
+        .brand-title img{
+            border-radius: 25px;
+            padding-left: 5px;
+
+        }
+        .navbar li{
+            float: left;
+            list-style:none;
+            margin: 13px 20px;
+            
+            
+            
+        }
+        .navbar ul{
+            overflow: auto;
+        }
+        .navbar li a{
+            padding: 3px 3px;
+            text-decoration: none;
+            color: white;
+            
+        
+        }
+        .navbar li a:hover{
+           background-color: grey;
+           border-radius: 20px;
+        
+        }
+       .search{
+        float:right;
+        color:white;
+        padding: 12px 75px;
+       }
+       
+       .navbar input{
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 3px 3px;
+       }
+       .navbar img{
+        padding-top: 10px ;
+        float: left;
+       }
+       table{
+        margin-top: 10px;
+        padding-top: 10px;
+        border-collapse: collapse;
+        text-align: center;
+        width: 100%;
+
+       }
+       th,td{
+        padding: 8px;
+        border:1px solid black;
+
+        
+       }
+       .mob-nav{
+        display: none;
+
+       }
+       
+       @media only screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul {
+        margin-top: 10px; /* Add margin for better spacing */
+        padding: 4px; /* Remove default padding */
+    }
+
+    .navbar li {
+        margin: 5px 5px; /* Adjust margin for better spacing */
+    }
+}
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="mob-nav">
+                <img src= "menu.png"  >
+            
+            </div>
+           <div class="brand-title">
+                <img src = bharat.png >
+            </div>
+            
+            <ul class = "navlinks">
+               
+                <li><a href = "# ">HOME</a></li>
+                <li><a href = "# ">ABOUT</a></li>
+                <li><a href = "# ">SERVICES</a></li>
+                <li><a href = "# ">CONTACT US</a></li>
+                </ul>
+        </nav>
+    </header>
+    <br>
+    
+         <!-- Filter by Gender dropdown -->
+    <label for="gender">Filter By Gender:</label>
+    <select id="gender" onchange="filterTable()">
+        <option value="all">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <br>
+        <!-- Filter by Percentage dropdown -->
+    <label for="percentage">Filter By Percentage:</label>
+    <select id="percentage" onchange="filterTable()">
+        <option value="all">All</option>
+        <option value="70">More than 70%</option>
+        <option value="90">More than 90%</option>
+    </select>
+     
+    <table id="student-table">
+        <thead>
+            <tr>
+                <th>STUDENT NAME</th>
+                <th>GENDER</th>
+                <th>AGE</th>
+                <th>PERCENTAGE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Chotu</td>
+                <td>Male</td>
+                <td>19</td>
+                <td>80</td>
+                
+            </tr>
+            <tr>
+                <td>Shashi</td>
+                <td>Male</td>
+                <td>20</td>
+                <td>77</td>
+                
+            </tr>
+            <tr>
+                <td>Suzy</td>
+                <td>Female</td>
+                <td>22</td>
+                <td>96</td>
+
+                
+            </tr>
+            <tr>
+                <td>Pooja</td>
+                <td>Female</td>
+                <td>19</td>
+                <td>98</td>
+
+                
+            </tr>
+            <tr>
+                <td>Deepti</td>
+                <td>Female</td>
+                <td>20</td>
+                <td>90</td>
+
+                
+            </tr>
+            <tr>
+                <td>Lucy</td>
+                <td>Female</td>
+                <td>21</td>
+                <td>89</td>
+
+                
+            </tr>
+            <tr>
+                <td>Jack</td>
+                <td>Male</td>
+                <td>29</td>
+                <td>67</td>
+
+                
+            </tr>
+
+
+        </tbody>
+    </table>
+    
+    
+<script>
+ function filterTable() {
+            var genderDropdown = document.getElementById("gender");
+            var percentageDropdown = document.getElementById("percentage");
+
+            var selectedGender = genderDropdown.value;
+            var selectedPercentage = parseInt(percentageDropdown.value);
+
+            var table = document.getElementById("student-table");
+            var rows = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < rows.length; i++) {
+                var row = rows[i];
+                var gender = row.cells[1].textContent.trim();
+                var percentage = parseInt(row.cells[3].textContent.trim());
+
+                var genderCondition = (selectedGender === "all" || gender === selectedGender);
+                var percentageCondition = (selectedPercentage === "all" || percentage > selectedPercentage);
+
+                if (genderCondition && percentageCondition) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+
+    }
+   
+
+        
+    }
+
+</script>
+    
+    
+</body>
+</html>
